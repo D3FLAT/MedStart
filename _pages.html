@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedStart — Все страницы</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      min-height: 100vh;
+      padding: 60px 40px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      grid-column: 1 / -1;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #475569;
+      margin-top: 24px;
+      margin-bottom: 4px;
+      padding-left: 2px;
+    }
+
+    .section-label:first-child {
+      margin-top: 0;
+    }
+
+    a.card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px 22px;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.18s, border-color 0.18s, transform 0.15s;
+    }
+
+    a.card:hover {
+      background: rgba(56,189,248,0.09);
+      border-color: rgba(56,189,248,0.35);
+      transform: translateY(-2px);
+    }
+
+    .icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(56,189,248,0.12);
+    }
+
+    .card-text .name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .card-text .path {
+      font-size: 12px;
+      color: #64748b;
+      font-family: 'Courier New', monospace;
+    }
+
+    .badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    .badge-general   { background: #1e3a5f; color: #7dd3fc; }
+    .badge-student   { background: #1a3a2a; color: #6ee7b7; }
+    .badge-company   { background: #3b1a4a; color: #d8b4fe; }
+    .badge-admin     { background: #4a2020; color: #fca5a5; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">🏥 MedStart</div>
+    <div class="subtitle">Навигация по всем страницам проекта</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- Общие -->
+    <div class="section-label">Общие</div>
+
+    <a class="card" href="index.html">
+      <div class="icon">🏠</div>
+      <div class="card-text">
+        <div class="name">Главная</div>
+        <div class="path">index.html</div>
+      </div>
+      <span class="badge badge-general">Общая</span>
+    </a>
+
+    <a class="card" href="registration.html">
+      <div class="icon">📝</div>
+      <div class="card-text">
+        <div class="name">Регистрация</div>
+        <div class="path">registration.html</div>
+      </div>
+      <span class="badge badge-general">Общая</span>
+    </a>
+
+    <!-- Студент -->
+    <div class="section-label">Студент</div>
+
+    <a class="card" href="student/student.html">
+      <div class="icon">🎓</div>
+      <div class="card-text">
+        <div class="name">Личный кабинет</div>
+        <div class="path">student/student.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/catalog.html">
+      <div class="icon">📋</div>
+      <div class="card-text">
+        <div class="name">Каталог вакансий</div>
+        <div class="path">student/catalog.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/job_more.html">
+      <div class="icon">🔍</div>
+      <div class="card-text">
+        <div class="name">Подробнее о вакансии</div>
+        <div class="path">student/job_more.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/chat.html">
+      <div class="icon">💬</div>
+      <div class="card-text">
+        <div class="name">Чат</div>
+        <div class="path">student/chat.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/portfolio.html">
+      <div class="icon">📁</div>
+      <div class="card-text">
+        <div class="name">Портфолио</div>
+        <div class="path">student/portfolio.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/open_profile.html">
+      <div class="icon">👤</div>
+      <div class="card-text">
+        <div class="name">Открытый профиль</div>
+        <div class="path">student/open_profile.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <a class="card" href="student/returns.html">
+      <div class="icon">⭐</div>
+      <div class="card-text">
+        <div class="name">Отзывы</div>
+        <div class="path">student/returns.html</div>
+      </div>
+      <span class="badge badge-student">Студент</span>
+    </a>
+
+    <!-- Компания -->
+    <div class="section-label">Компания</div>
+
+    <a class="card" href="company/c_profile.html">
+      <div class="icon">🏢</div>
+      <div class="card-text">
+        <div class="name">Профиль компании</div>
+        <div class="path">company/c_profile.html</div>
+      </div>
+      <span class="badge badge-company">Компания</span>
+    </a>
+
+    <a class="card" href="company/c_catalog.html">
+      <div class="icon">📋</div>
+      <div class="card-text">
+        <div class="name">Каталог студентов</div>
+        <div class="path">company/c_catalog.html</div>
+      </div>
+      <span class="badge badge-company">Компания</span>
+    </a>
+
+    <a class="card" href="company/c_chat.html">
+      <div class="icon">💬</div>
+      <div class="card-text">
+        <div class="name">Чат</div>
+        <div class="path">company/c_chat.html</div>
+      </div>
+      <span class="badge badge-company">Компания</span>
+    </a>
+
+    <a class="card" href="company/c_open_profile.html">
+      <div class="icon">👤</div>
+      <div class="card-text">
+        <div class="name">Открытый профиль</div>
+        <div class="path">company/c_open_profile.html</div>
+      </div>
+      <span class="badge badge-company">Компания</span>
+    </a>
+
+    <a class="card" href="company/c_returns.html">
+      <div class="icon">⭐</div>
+      <div class="card-text">
+        <div class="name">Отзывы</div>
+        <div class="path">company/c_returns.html</div>
+      </div>
+      <span class="badge badge-company">Компания</span>
+    </a>
+
+    <!-- Админ -->
+    <div class="section-label">Администратор</div>
+
+    <a class="card" href="admin/auth.html">
+      <div class="icon">🔐</div>
+      <div class="card-text">
+        <div class="name">Вход для админа</div>
+        <div class="path">admin/auth.html</div>
+      </div>
+      <span class="badge badge-admin">Админ</span>
+    </a>
+
+    <a class="card" href="admin/admin.html">
+      <div class="icon">⚙️</div>
+      <div class="card-text">
+        <div class="name">Панель управления</div>
+        <div class="path">admin/admin.html</div>
+      </div>
+      <span class="badge badge-admin">Админ</span>
+    </a>
+
+  </div>
+
+</body>
+</html>
