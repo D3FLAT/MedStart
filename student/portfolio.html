@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заполнение портфолио</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+}
 
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:20px;
+}
+
+h1{margin-bottom:20px}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:20px;
+  animation:fadeUp .6s ease;
+}
+
+h2{margin-bottom:15px}
+
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:#fff;
+}
+
+textarea{resize:none;height:100px}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.add-btn{
+  background:#38bdf8;
+  color:#020617;
+}
+
+.add-btn:hover{transform:scale(1.05)}
+
+.verify-btn{
+  width:100%;
+  margin-top:20px;
+  background:#22c55e;
+  color:#020617;
+  font-size:16px;
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  background:#1e293b;
+  padding:10px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.remove{
+  background:#ef4444;
+  color:#fff;
+  border:none;
+  padding:5px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Портфолио</h1>
+
+<div class="card">
+  <h2>Образование</h2>
+  <input id="eduInput" placeholder="Добавить образование">
+  <button class="add-btn" onclick="addItem('edu')">Добавить</button>
+  <div id="eduList" class="list"></div>
+</div>
+
+<div class="card">
+  <h2>Сертификаты</h2>
+  <input id="certInput" placeholder="Добавить сертификат">
+  <button class="add-btn" onclick="addItem('cert')">Добавить</button>
+  <div id="certList" class="list"></div>
+</div>
+
+<div class="card">
+  <h2>Практика / Опыт</h2>
+  <textarea id="experience" placeholder="Опишите опыт"></textarea>
+</div>
+
+<div class="card">
+  <h2>Достижения</h2>
+  <input id="achInput" placeholder="Добавить достижение">
+  <button class="add-btn" onclick="addItem('ach')">Добавить</button>
+  <div id="achList" class="list"></div>
+</div>
+
+<button class="verify-btn" onclick="verify()">Запросить верификацию</button>
+
+</div>
+
+<script>
+const data = {
+  edu:[],
+  cert:[],
+  ach:[]
+};
+
+function addItem(type){
+  const input = document.getElementById(type+'Input');
+  if(!input.value.trim()) return;
+
+  data[type].push(input.value);
+  input.value='';
+  render(type);
+}
+
+function render(type){
+  const list = document.getElementById(type+'List');
+  list.innerHTML='';
+
+  data[type].forEach((item,index)=>{
+    const div = document.createElement('div');
+    div.className='item';
+    div.innerHTML = `${item} <button class='remove' onclick='removeItem("${type}",${index})'>✕</button>`;
+    list.appendChild(div);
+  });
+}
+
+function removeItem(type,index){
+  data[type].splice(index,1);
+  render(type);
+}
+
+function verify(){
+  alert('Запрос отправлен (демо)');
+}
+</script>
+
+</body>
+</html>
