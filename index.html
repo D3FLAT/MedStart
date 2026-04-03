@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedStart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+    }
+
+    .logo {
+      font-size:24px;
+      font-weight:700;
+      color:#38bdf8;
+    }
+
+    nav a {
+      margin-left:30px;
+      text-decoration:none;
+      color:#cbd5f5;
+      font-weight:400;
+      transition:0.3s;
+    }
+
+    nav a:hover {
+      color:#38bdf8;
+    }
+
+    .hero {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:80px 60px;
+    }
+
+    .hero-text {
+      max-width:600px;
+    }
+
+    .hero-text h1 {
+      font-size:48px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero-text p {
+      color:#94a3b8;
+      margin-bottom:30px;
+      font-size:18px;
+    }
+
+    .buttons button {
+      padding:14px 28px;
+      margin-right:15px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .primary {
+      background:#38bdf8;
+      color:#0f172a;
+      font-weight:600;
+    }
+
+    .primary:hover {
+      background:#0ea5e9;
+    }
+
+    .secondary {
+      background:transparent;
+      border:1px solid #38bdf8;
+      color:#38bdf8;
+    }
+
+    .secondary:hover {
+      background:#38bdf8;
+      color:#0f172a;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .stats {
+      display:flex;
+      justify-content:space-around;
+      padding:60px;
+    }
+
+    .stat {
+      text-align:center;
+    }
+
+    .stat h2 {
+      font-size:36px;
+      color:#38bdf8;
+    }
+
+    .features {
+      padding:80px 60px;
+    }
+
+    .features h2 {
+      text-align:center;
+      margin-bottom:50px;
+      font-size:32px;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding:25px;
+      border-radius:16px;
+      transition:0.3s;
+    }
+
+    .card:hover {
+      transform:translateY(-5px);
+      background: rgba(56,189,248,0.1);
+    }
+
+    footer {
+      text-align:center;
+      padding:30px;
+      color:#64748b;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MedStart</div>
+  <nav>
+    <a href="#">Вакансии</a>
+    <a href="#">Кандидаты</a>
+    <a href="#">Как это работает</a>
+    <a href="#">Войти</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Когда знания становятся карьерой</h1>
+    <p>Платформа, которая соединяет молодых медиков и реальные рабочие места. Быстро. Прозрачно. Точно.</p>
+    <div class="buttons">
+      <button class="primary">Создать портфолио</button>
+      <button class="secondary">Найти кандидата</button>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <p>🎯 Рекомендовано вам</p>
+    <h3>Врач-терапевт</h3>
+    <p>Астрахань • Поликлиника №3</p>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat">
+    <h2>500+</h2>
+    <p>Портфолио</p>
+  </div>
+  <div class="stat">
+    <h2>30+</h2>
+    <p>Организаций</p>
+  </div>
+  <div class="stat">
+    <h2>80+</h2>
+    <p>Трудоустройств</p>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Как это работает</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Создай профиль</h3>
+      <p>Добавь навыки, практику и достижения</p>
+    </div>
+    <div class="card">
+      <h3>Пройди проверку</h3>
+      <p>Портфолио подтверждается вузом</p>
+    </div>
+    <div class="card">
+      <h3>Получай предложения</h3>
+      <p>Работодатели находят тебя сами</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 MedStart
+</footer>
+
+</body>
+</html>

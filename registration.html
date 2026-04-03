@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedStart Auth</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.container{
+  width:100%;
+  max-width:400px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  animation:fadeUp 0.8s ease;
+}
+
+h2{text-align:center;margin-bottom:20px}
+
+.tabs{
+  display:flex;
+  margin-bottom:20px;
+}
+
+.tabs button{
+  flex:1;
+  padding:10px;
+  border:none;
+  cursor:pointer;
+  background:transparent;
+  color:#94a3b8;
+}
+
+.tabs button.active{
+  color:#38bdf8;
+  border-bottom:2px solid #38bdf8;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:#fff;
+}
+
+button.submit{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#38bdf8;
+  color:#0f172a;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button.submit:hover{transform:scale(1.03)}
+
+.switch{
+  text-align:center;
+  margin-top:10px;
+  cursor:pointer;
+  color:#38bdf8;
+}
+
+.hidden{display:none}
+
+.admin-link{
+  text-align:center;
+  margin-top:15px;
+  font-size:14px;
+  color:#64748b;
+  cursor:pointer;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2 id="title">Вход (Студент)</h2>
+
+  <div class="tabs">
+    <button class="active" onclick="setRole('student')">Студент</button>
+    <button onclick="setRole('company')">Компания</button>
+  </div>
+
+  <form id="form">
+    <div id="nameField" class="hidden">
+      <input type="text" placeholder="Имя / Компания">
+    </div>
+
+    <div id="extraField" class="hidden">
+      <input type="text" placeholder="Специализация / Тип клиники">
+    </div>
+
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Пароль">
+
+    <button class="submit">Войти</button>
+  </form>
+
+  <div class="switch" onclick="toggleMode()">Нет аккаунта? Регистрация</div>
+
+</div>
+
+<script>
+let mode = 'login';
+let role = 'student';
+
+function setRole(r){
+  role = r;
+  document.querySelectorAll('.tabs button').forEach(btn=>btn.classList.remove('active'));
+  event.target.classList.add('active');
+  updateUI();
+}
+
+function toggleMode(){
+  mode = mode === 'login' ? 'register' : 'login';
+  updateUI();
+}
+
+function updateUI(){
+  const title = document.getElementById('title');
+  const nameField = document.getElementById('nameField');
+  const extraField = document.getElementById('extraField');
+  const btn = document.querySelector('.submit');
+
+  if(mode==='login'){
+    title.innerText = `Вход (${role==='student'?'Студент':'Компания'})`;
+    nameField.classList.add('hidden');
+    extraField.classList.add('hidden');
+    btn.innerText = 'Войти';
+  } else {
+    title.innerText = `Регистрация (${role==='student'?'Студент':'Компания'})`;
+    nameField.classList.remove('hidden');
+    extraField.classList.remove('hidden');
+    btn.innerText = 'Создать аккаунт';
+  }
+}
+
+function openAdmin(){
+  document.body.innerHTML = `
+    <div class="container">
+      <h2>Админка</h2>
+      <input type="text" placeholder="Логин">
+      <input type="password" placeholder="Пароль">
+      <button class="submit">Войти</button>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>

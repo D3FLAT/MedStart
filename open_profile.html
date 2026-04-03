@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль студента</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff}
+
+.container{max-width:1100px;margin:40px auto;padding:20px}
+
+.header{display:flex;gap:20px;align-items:center;margin-bottom:30px}
+
+.avatar{
+  width:90px;height:90px;border-radius:50%;
+  background:#38bdf8;color:#020617;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:700;
+}
+
+.name{font-size:24px;font-weight:700}
+.spec{color:#94a3b8}
+
+.layout{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  padding:20px;border-radius:16px;margin-bottom:20px;
+}
+
+h2{margin-bottom:10px}
+
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:#1e293b;padding:5px 10px;border-radius:8px;font-size:13px}
+
+button{
+  width:100%;padding:12px;border:none;border-radius:12px;
+  font-weight:600;cursor:pointer;margin-top:10px;
+}
+
+.invite{background:#22c55e;color:#020617}
+.message{background:#38bdf8;color:#020617}
+
+.info p{margin-bottom:10px;color:#94a3b8}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .header{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+  <div class="avatar">И</div>
+  <div>
+    <div class="name">Иван Иванов</div>
+    <div class="spec">Терапия • АГМУ</div>
+  </div>
+</div>
+
+<div class="layout">
+
+<div>
+
+  <div class="card">
+    <h2>О себе</h2>
+    <p style="color:#94a3b8">Мотивированный студент, ищу стажировку для получения практического опыта.</p>
+  </div>
+
+  <div class="card">
+    <h2>Навыки</h2>
+    <div class="skills">
+      <span class="tag">Диагностика</span>
+      <span class="tag">Коммуникация</span>
+      <span class="tag">Работа с пациентами</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Портфолио</h2>
+
+    <h3>Образование</h3>
+    <p style="color:#94a3b8">Астраханский ГМУ</p>
+
+    <h3>Сертификаты</h3>
+    <p style="color:#94a3b8">Сертификат терапии</p>
+
+    <h3>Опыт</h3>
+    <p style="color:#94a3b8">Практика в поликлинике (6 месяцев)</p>
+
+    <h3>Достижения</h3>
+    <p style="color:#94a3b8">Участие в медицинской конференции</p>
+
+  </div>
+
+</div>
+
+<div>
+
+  <div class="card">
+    <h2>Действия</h2>
+    <button class="invite" onclick="invite()">Пригласить</button>
+    <button class="message" onclick="message()">Написать</button>
+  </div>
+
+  <div class="card info">
+    <h2>Информация</h2>
+    <p><b>Email:</b> ivan@mail.ru</p>
+    <p><b>Телефон:</b> +7 999 000 00 00</p>
+  </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function invite(){
+  alert('Приглашение отправлено');
+}
+
+function message(){
+  alert('Открыть чат');
+}
+</script>
+
+</body>
+</html>

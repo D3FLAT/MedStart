@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вакансии</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff}
+
+.container{max-width:1100px;margin:40px auto;padding:20px}
+
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+
+.search{
+  width:300px;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:#fff;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:16px;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.card:hover{transform:translateY(-5px)}
+
+.title{font-size:18px;font-weight:600;margin-bottom:5px}
+.company{color:#94a3b8;margin-bottom:10px}
+
+.tags{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.tag{background:#1e293b;padding:4px 8px;border-radius:8px;font-size:12px}
+
+.actions{margin-top:10px;display:flex;gap:10px}
+
+button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.view{background:#38bdf8;color:#020617}
+.apply{background:#22c55e;color:#020617}
+
+@media(max-width:600px){
+  .search{width:100%}
+  .header{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+  <h1>Вакансии</h1>
+  <input class="search" placeholder="Поиск..." oninput="filter()">
+</div>
+
+<div class="grid" id="list"></div>
+
+</div>
+
+<script>
+const vacancies = [
+  {title:'Врач-терапевт', company:'Поликлиника №3', tags:['Астрахань','Стажировка']},
+  {title:'Педиатр', company:'Детская больница', tags:['Полная занятость']},
+  {title:'Медсестра', company:'Частная клиника', tags:['Гибкий график']}
+];
+
+function render(arr=vacancies){
+  const container = document.getElementById('list');
+  container.innerHTML='';
+
+  arr.forEach((v,i)=>{
+    const div = document.createElement('div');
+    div.className='card';
+
+    div.innerHTML = `
+      <div>
+        <div class="title">${v.title}</div>
+        <div class="company">${v.company}</div>
+        <div class="tags">
+          ${v.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="actions">
+        <button class="view" onclick="view(${i})">Подробнее</button>
+        <button class="apply" onclick="apply(${i})">Отклик</button>
+      </div>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+function filter(){
+  const q = document.querySelector('.search').value.toLowerCase();
+  const filtered = vacancies.filter(v =>
+    v.title.toLowerCase().includes(q) ||
+    v.company.toLowerCase().includes(q)
+  );
+  render(filtered);
+}
+
+function view(i){
+  alert('Открыть страницу вакансии');
+}
+
+function apply(i){
+  alert('Вы откликнулись');
+}
+
+render();
+</script>
+
+</body>
+</html>

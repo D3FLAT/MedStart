@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль организации</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+}
+
+.container{
+  max-width:900px;
+  margin:40px auto;
+  padding:20px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:25px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+h2{margin-bottom:15px}
+
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:#fff;
+}
+
+textarea{resize:none;height:100px}
+
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:12px;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{transform:scale(1.05)}
+
+.company-top{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.logo{
+  width:80px;
+  height:80px;
+  border-radius:20px;
+  background:#38bdf8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  font-weight:700;
+}
+
+.vacancies{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.vacancy{
+  background:#1e293b;
+  padding:12px;
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.delete{
+  background:#ef4444;
+  color:#fff;
+  border:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+@media(max-width:600px){
+  .company-top{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Профиль организации</h1>
+    <button onclick="save()">Сохранить</button>
+  </div>
+
+  <div class="card">
+    <div class="company-top">
+      <div class="logo" id="logo">К</div>
+      <div>
+        <input id="companyName" placeholder="Название организации">
+        <input id="type" placeholder="Тип (клиника, больница)">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Описание</h2>
+    <textarea id="about" placeholder="О компании"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Контакты</h2>
+    <input id="email" placeholder="Email">
+    <input id="phone" placeholder="Телефон">
+    <input id="address" placeholder="Адрес">
+  </div>
+
+  <div class="card">
+    <h2>Вакансии</h2>
+    <input id="vacInput" placeholder="Добавить вакансию">
+    <button onclick="addVacancy()">Добавить</button>
+    <div id="vacList" class="vacancies"></div>
+  </div>
+
+</div>
+
+<script>
+let vacancies = [];
+
+function addVacancy(){
+  const input = document.getElementById('vacInput');
+  if(!input.value.trim()) return;
+
+  vacancies.push(input.value);
+  input.value='';
+  renderVacancies();
+}
+
+function renderVacancies(){
+  const list = document.getElementById('vacList');
+  list.innerHTML='';
+
+  vacancies.forEach((v,i)=>{
+    const el = document.createElement('div');
+    el.className='vacancy';
+    el.innerHTML = `${v} <button class='delete' onclick='removeVacancy(${i})'>✕</button>`;
+    list.appendChild(el);
+  });
+}
+
+function removeVacancy(i){
+  vacancies.splice(i,1);
+  renderVacancies();
+}
+
+function save(){
+  alert('Сохранено (демо)');
+}
+
+// логотип по первой букве
+const nameInput = document.getElementById('companyName');
+nameInput.addEventListener('input',()=>{
+  const val = nameInput.value.trim();
+  document.getElementById('logo').innerText = val ? val[0].toUpperCase() : 'К';
+});
+</script>
+
+</body>
+</html>

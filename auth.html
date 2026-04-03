@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#020617,#0f172a);
+  color:#fff;
+}
+
+.container{
+  width:100%;
+  max-width:380px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(14px);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+  animation:fadeUp .8s ease;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:#fff;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.04);
+  background:#0ea5e9;
+}
+
+.error{
+  color:#ef4444;
+  text-align:center;
+  margin-top:10px;
+  display:none;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Админ-панель</h2>
+  <input id="login" type="text" placeholder="Логин">
+  <input id="password" type="password" placeholder="Пароль">
+  <button onclick="login()">Войти</button>
+  <div class="error" id="error">Неверные данные</div>
+</div>
+
+<script>
+function login(){
+  const login = document.getElementById('login').value;
+  const password = document.getElementById('password').value;
+
+  // демо-проверка
+  if(login === 'admin' && password === 'admin123'){
+    window.location.href = 'admin.html';
+  } else {
+    document.getElementById('error').style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>
