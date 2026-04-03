@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чат работодателя</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0f172a;color:#fff;height:100vh;display:flex}
 
+.sidebar{width:300px;background:#020617;padding:15px;overflow-y:auto}
+.chat-item{padding:12px;border-radius:10px;cursor:pointer;margin-bottom:8px;background:#1e293b}
+.chat-item.active{background:#38bdf8;color:#020617}
+.chat-title{font-weight:600}
+.chat-sub{font-size:12px;color:#94a3b8}
+
+.main{flex:1;display:flex;flex-direction:column}
+.header{padding:15px;border-bottom:1px solid #1e293b;display:flex;justify-content:space-between;align-items:center}
+.header .name{font-weight:600}
+.header .actions button{margin-left:8px}
+
+.messages{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:70%;padding:10px;border-radius:12px}
+.me{background:#38bdf8;color:#020617;align-self:flex-end}
+.other{background:#1e293b}
+.meta{font-size:11px;color:#94a3b8;margin-top:4px}
+
+.input-area{display:flex;padding:10px;border-top:1px solid #1e293b}
+input{flex:1;padding:10px;border:none;border-radius:10px;background:#1e293b;color:#fff}
+button{margin-left:10px;padding:10px 14px;border:none;border-radius:10px;background:#38bdf8;color:#020617;cursor:pointer}
+
+.tag{padding:4px 8px;border-radius:8px;font-size:12px}
+.tag.accept{background:#22c55e;color:#020617}
+.tag.reject{background:#ef4444;color:#fff}
+.tag.pending{background:#facc15;color:#020617}
+
+@media(max-width:768px){.sidebar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="chatList"></div>
+
+<div class="main">
+  <div class="header">
+    <div>
+      <div class="name" id="chatHeader">Выберите кандидата</div>
+      <div class="chat-sub" id="vacancyInfo"></div>
+    </div>
+    <div class="actions">
+      <button onclick="setStatus('accepted')">Принять</button>
+      <button onclick="setStatus('rejected')">Отклонить</button>
+    </div>
+  </div>
+
+  <div class="messages" id="messages"></div>
+
+  <div class="input-area">
+    <input id="input" placeholder="Сообщение кандидату...">
+    <button onclick="send()">→</button>
+  </div>
+</div>
+
+<script>
+const chats = [
+  {
+    name:'Иван Иванов',
+    vacancy:'Врач-терапевт',
+    status:'pending',
+    messages:[
+      {text:'Здравствуйте! Я откликнулся на вакансию.', me:false, time:'10:02'},
+      {text:'Добрый день, Иван! Расскажите о практике.', me:true, time:'10:05'}
+    ]
+  },
+  {
+    name:'Анна Смирнова',
+    vacancy:'Педиатр',
+    status:'accepted',
+    messages:[
+      {text:'Готова приступить к стажировке.', me:false, time:'09:20'}
+    ]
+  }
+];
+
+let current = null;
+
+function statusTag(s){
+  if(s==='accepted') return '<span class="tag accept">Принята</span>';
+  if(s==='rejected') return '<span class="tag reject">Отклонена</span>';
+  return '<span class="tag pending">На рассмотрении</span>';
+}
+
+function renderChats(){
+  const list = document.getElementById('chatList');
+  list.innerHTML='';
+  chats.forEach((c,i)=>{
+    const div = document.createElement('div');
+    div.className='chat-item';
+    div.innerHTML = `
+      <div class="chat-title">${c.name}</div>
+      <div class="chat-sub">${c.vacancy}</div>
+      <div style="margin-top:6px">${statusTag(c.status)}</div>
+    `;
+    div.onclick = ()=>openChat(i);
+    list.appendChild(div);
+  });
+}
+
+function openChat(i){
+  current = i;
+  const c = chats[i];
+  document.getElementById('chatHeader').innerText = c.name;
+  document.getElementById('vacancyInfo').innerText = c.vacancy;
+
+  document.querySelectorAll('.chat-item').forEach((el,idx)=>{
+    el.classList.toggle('active', idx===i);
+  });
+
+  renderMessages();
+}
+
+function renderMessages(){
+  const container = document.getElementById('messages');
+  container.innerHTML='';
+  if(current===null) return;
+  chats[current].messages.forEach(m=>{
+    const div = document.createElement('div');
+    div.className = 'msg ' + (m.me ? 'me':'other');
+    div.innerHTML = `${m.text}<div class="meta">${m.time||''}</div>`;
+    container.appendChild(div);
+  });
+  container.scrollTop = container.scrollHeight;
+}
+
+function send(){
+  const input = document.getElementById('input');
+  if(!input.value || current===null) return;
+  chats[current].messages.push({text:input.value, me:true, time:timeNow()});
+  input.value='';
+  renderMessages();
+}
+
+function setStatus(s){
+  if(current===null) return;
+  chats[current].status = s;
+  renderChats();
+}
+
+function timeNow(){
+  const d = new Date();
+  const h = String(d.getHours()).padStart(2,'0');
+  const m = String(d.getMinutes()).padStart(2,'0');
+  return `${h}:${m}`;
+}
+
+renderChats();
+</script>
+
+</body>
+</html>
